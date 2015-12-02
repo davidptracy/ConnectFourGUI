@@ -357,8 +357,7 @@ class gui {
 
         //jframe stuff
         frame.setContentPane(panel);
-        frame.setSize(
-                700, 600);
+        frame.setSize(700, 600);
         frame.setVisible(
                 true);
         frame.setLocationRelativeTo(null);
@@ -374,8 +373,7 @@ class gui {
   
     }
     
-    private void handleClosing() {   
-      	
+    private void handleClosing() {     	
     	
     	String[] buttonLabels = new String[] {"Yes", "No"};
         String defaultOption = buttonLabels[0];
@@ -402,23 +400,34 @@ class gui {
         System.out.println(choice);
     }
 
+    
+    // <<<<<<< DAVID EDITS
+    
+    
     public void updateBoard() {//keeps the gui in sync with the logggggtjiic and grid
         for (int row = 0; row < xsize; row++) {
             for (int column = 0; column < ysize; column++) {
                 if (my_grid.matrix_equals(row, column, 1)) {
                     slots[row][column].setOpaque(true);
-                    slots[row][column].setBackground(Color.red);
-//                    slots[row][column].paint(Graphics g);
-//                    g.setColor(Color.red);
-//                    g.drawOval(0,0, 20, 20);                    
+                    Graphics2D g = (Graphics2D)slots[row][column].getGraphics();
+                    int radiusX = frame.getWidth() / ConnectFour.xSize; 
+                    int radiusY = frame.getHeight() / ConnectFour.ySize;
+                    g.setColor(Color.red);                            
+                    g.fillOval(0, 0, radiusX, radiusY);                    
                 }
                 if (my_grid.matrix_equals(row, column, 2)) {
                     slots[row][column].setOpaque(true);
-                    slots[row][column].setBackground(Color.yellow);
+                    Graphics2D g = (Graphics2D)slots[row][column].getGraphics();
+                    int radiusX = frame.getWidth() / ConnectFour.xSize; 
+                    int radiusY = frame.getHeight() / ConnectFour.ySize;
+                    g.setColor(Color.yellow);                            
+                    g.fillOval(0, 0, radiusX, radiusY);
                 }
             }
         }
     }
+    
+ // <<<<<<< DAVID EDITS
 
     public void showWon() {
 // =============================================================================
