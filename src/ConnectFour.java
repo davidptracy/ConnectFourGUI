@@ -270,9 +270,11 @@ class gui {
     private boolean hasDraw = false;
     private boolean quit = false;
     private boolean newGame = false;
+    private int choice = 0;
     //making of grid and logic
     Grid my_grid = new Grid();
     logic my_logic = new logic(my_grid); //create game logic
+    
 
     public gui() {
 
@@ -360,7 +362,44 @@ class gui {
         frame.setVisible(
                 true);
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+              
+        
+        // <<<<<<<<<<< David Edits
+        frame.addWindowListener(new WindowAdapter(){
+        	public void windowClosing(WindowEvent e){
+        		handleClosing();
+        	}
+        });
+  
+    }
+    
+    private void handleClosing() {   
+      	
+    	
+    	String[] buttonLabels = new String[] {"Yes", "No"};
+        String defaultOption = buttonLabels[0];
+        Icon icon = null;
+         
+        choice = JOptionPane.showOptionDialog(
+        		frame,
+                "There's still something unsaved.\n" +
+                "Do you want to save before exiting?",
+                "Warning",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE,
+                icon,
+                buttonLabels,
+                defaultOption); 
+        
+        if (choice == 0){
+        	frame.dispose();
+        	System.exit(0);
+        } else if (choice == 1){
+        	
+        }
+        
+        System.out.println(choice);
     }
 
     public void updateBoard() {//keeps the gui in sync with the logggggtjiic and grid
@@ -443,6 +482,32 @@ class gui {
     public static void main(String[] args) {
         gui Gui = new gui();
     }
+    
+//    public void WindowClosing(WindowEvent e)
+//    {
+//      int confirmed = JOptionPane.showConfirmDialog(null, 
+//          "Are you sure you want to exit the program?", "Exit Program Message Box", 
+//          JOptionPane.YES_NO_OPTION);
+//
+//      if (confirmed == JOptionPane.YES_OPTION)
+//      {
+//        dispose();
+//      }
+//    }
+
+//    public Application()
+//    {
+//      setTitle("Primary School Application");
+//      setLocation(50, 50);
+//      setSize(800,600);
+//      setLayout(new BorderLayout(20, 20));
+//      setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+//      addWindowListener(new WindowAdapter());
+//    }
+    
+    
+    
+    
 }
 
 class logic {
